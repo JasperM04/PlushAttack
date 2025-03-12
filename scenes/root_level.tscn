@@ -1,0 +1,191 @@
+[gd_scene load_steps=14 format=3 uid="uid://7vg0a3urps52"]
+
+[ext_resource type="PackedScene" uid="uid://fq5dp2qgnmpk" path="res://scenes/player.tscn" id="1_fu6h5"]
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_sefgh"]
+[ext_resource type="PackedScene" uid="uid://dhno52n3gcs8j" path="res://assets/basket/basket_animated.tscn" id="2_t6kuy"]
+[ext_resource type="PackedScene" uid="uid://kyxh40n1xjhg" path="res://scenes/platforms/platform_3x1.tscn" id="4_gv7nv"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_f8rjk"]
+size = Vector3(36, 1, 5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ovmqt"]
+albedo_color = Color(0.552941, 0.356863, 0.266667, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_scr8u"]
+size = Vector3(36, 1, 5)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_dg25u"]
+size = Vector2(36, 20)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cyny3"]
+albedo_color = Color(0.6, 0.768627, 0.901961, 1)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_dqq5c"]
+height = 0.766087
+radius = 0.976625
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_otohq"]
+size = Vector3(0.4, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_e3ao2"]
+size = Vector3(0.4, 1, 0.2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tgpjf"]
+albedo_color = Color(0, 0, 0, 1)
+
+[node name="root_level" type="Node3D"]
+script = ExtResource("1_sefgh")
+
+[node name="floor" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8, -2.5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.541166, 0)
+mesh = SubResource("BoxMesh_f8rjk")
+surface_material_override/0 = SubResource("StandardMaterial3D_ovmqt")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.541166, 0)
+shape = SubResource("BoxShape3D_scr8u")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -5)
+mesh = SubResource("PlaneMesh_dg25u")
+surface_material_override/0 = SubResource("StandardMaterial3D_cyny3")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.983255, 0.182236, 0, -0.182236, 0.983255, 0, 5.79873, 26.0143)
+projection = 1
+fov = 90.0
+size = 20.0
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 11.4697)
+light_energy = 16.0
+spot_range = 124.496
+
+[node name="basket" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -1.444, -0.241)
+collision_layer = 0
+collision_mask = 4
+
+[node name="Korp_Deadmaus (1)" parent="basket" instance=ExtResource("2_t6kuy")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="basket"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0757732, 0.45783, 0.235955)
+shape = SubResource("CylinderShape3D_dqq5c")
+
+[node name="platforms" type="Node3D" parent="."]
+
+[node name="platform1" parent="platforms" instance=ExtResource("4_gv7nv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+
+[node name="platform3" parent="platforms" instance=ExtResource("4_gv7nv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, 0)
+
+[node name="platform4" parent="platforms" instance=ExtResource("4_gv7nv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 2, 0)
+
+[node name="platform2" parent="platforms" instance=ExtResource("4_gv7nv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -2, 0)
+
+[node name="platform5" parent="platforms" instance=ExtResource("4_gv7nv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -2, 0)
+
+[node name="platform6" parent="platforms" instance=ExtResource("4_gv7nv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, -4, 0)
+
+[node name="platform7" parent="platforms" instance=ExtResource("4_gv7nv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, -6, 0)
+
+[node name="platform8" parent="platforms" instance=ExtResource("4_gv7nv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -6, 0)
+
+[node name="platform9" parent="platforms" instance=ExtResource("4_gv7nv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -5, 0)
+
+[node name="platform10" parent="platforms" instance=ExtResource("4_gv7nv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 3, 0)
+
+[node name="platform11" parent="platforms" instance=ExtResource("4_gv7nv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 2, 0)
+
+[node name="platform12" parent="platforms" instance=ExtResource("4_gv7nv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 6, 0)
+
+[node name="platform13" parent="platforms" instance=ExtResource("4_gv7nv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 7, 0)
+
+[node name="platform14" parent="platforms" instance=ExtResource("4_gv7nv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1, 0)
+
+[node name="platform15" parent="platforms" instance=ExtResource("4_gv7nv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 4, 0)
+
+[node name="platform16" parent="platforms" instance=ExtResource("4_gv7nv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 6, 0)
+
+[node name="playerspawn" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -8, 0)
+
+[node name="mouse_positions" type="Node3D" parent="."]
+
+[node name="mousespawn1" type="Marker3D" parent="mouse_positions"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.72069, 2.99295, 0)
+
+[node name="mousespawn2" type="Marker3D" parent="mouse_positions"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.33574, -4.06617, 0)
+
+[node name="mousespawn3" type="Marker3D" parent="mouse_positions"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.780067, 7.09282, 0)
+
+[node name="mousespawn4" type="Marker3D" parent="mouse_positions"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.15439, 2.9824, 0)
+
+[node name="mousespawn5" type="Marker3D" parent="mouse_positions"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.77628, -1.02277, 0)
+
+[node name="mouse_spawn_container" type="Node3D" parent="."]
+
+[node name="hole" type="Node3D" parent="."]
+
+[node name="hole1" type="Area3D" parent="hole"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -1.5, 0)
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hole/hole1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_otohq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="hole/hole1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -0.4)
+mesh = SubResource("BoxMesh_e3ao2")
+surface_material_override/0 = SubResource("StandardMaterial3D_tgpjf")
+
+[node name="hole2" type="Area3D" parent="hole"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.87286, 3.5, 0)
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hole/hole2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_otohq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="hole/hole2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -0.4)
+mesh = SubResource("BoxMesh_e3ao2")
+surface_material_override/0 = SubResource("StandardMaterial3D_tgpjf")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "0/10"
+
+[node name="player" parent="." instance=ExtResource("1_fu6h5")]
+
+[connection signal="body_entered" from="basket" to="." method="_on_basket_body_entered"]
+[connection signal="body_entered" from="hole/hole1" to="." method="_on_hole_1_body_entered"]
+[connection signal="body_entered" from="hole/hole2" to="." method="_on_hole_2_body_entered"]

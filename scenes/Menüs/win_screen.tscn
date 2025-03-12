@@ -1,0 +1,154 @@
+[gd_scene load_steps=19 format=3 uid="uid://cds7wdrmjqxpn"]
+
+[ext_resource type="Script" path="res://scenes/Menüs/win_screen.gd" id="1_bygyx"]
+[ext_resource type="Texture2D" path="res://menü_asset/win_screen/Background.png" id="2_8r0pi"]
+[ext_resource type="Texture2D" path="res://menü_asset/win_screen/Restart_level.png" id="3_sugpu"]
+[ext_resource type="Texture2D" path="res://menü_asset/win_screen/Restart_level_pressed.png" id="4_bfltn"]
+[ext_resource type="Texture2D" path="res://menü_asset/win_screen/Restart_level_hover.png" id="5_hfoea"]
+[ext_resource type="Texture2D" path="res://menü_asset/win_screen/Homescreen.png" id="6_bia76"]
+[ext_resource type="Texture2D" path="res://menü_asset/win_screen/Homescreen_pressed.png" id="7_ynmno"]
+[ext_resource type="Texture2D" path="res://menü_asset/win_screen/Homescreen_hover.png" id="8_8nrfq"]
+[ext_resource type="Texture2D" path="res://menü_asset/win_screen/Next_level.png" id="9_r2psp"]
+[ext_resource type="Texture2D" path="res://menü_asset/win_screen/Next_Level_pressed.png" id="10_7tkyy"]
+[ext_resource type="Texture2D" path="res://menü_asset/win_screen/Next_level_hover_v2.png" id="11_5bils"]
+[ext_resource type="Texture2D" path="res://menü_asset/win_screen/ZeroStars.png" id="12_bjta4"]
+[ext_resource type="Texture2D" path="res://menü_asset/win_screen/OneStar.png" id="13_qthtm"]
+[ext_resource type="Texture2D" path="res://menü_asset/win_screen/TwoStars.png" id="14_jjmd6"]
+[ext_resource type="Texture2D" path="res://menü_asset/win_screen/ThreeStars.png" id="15_y3gre"]
+[ext_resource type="PackedScene" uid="uid://b0o81r6hujewa" path="res://player_winscreen_animation.tscn" id="16_kxdl6"]
+[ext_resource type="FontFile" path="res://menü_asset/win_screen/Crunch Chips.otf" id="16_yqd24"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fscci"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_bjta4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_qthtm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_jjmd6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_y3gre")
+}],
+"loop": true,
+"name": &"Stars",
+"speed": 1.0
+}]
+
+[node name="Win screen" type="CanvasLayer"]
+script = ExtResource("1_bygyx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(574.5, 325.5)
+scale = Vector2(0.600521, 0.5425)
+texture = ExtResource("2_8r0pi")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = -10.0
+offset_right = 2.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RestartButton" type="TextureButton" parent="Control"]
+layout_mode = 0
+offset_left = 649.0
+offset_top = 357.0
+offset_right = 858.0
+offset_bottom = 539.0
+scale = Vector2(0.75, 0.75)
+size_flags_horizontal = 8
+size_flags_stretch_ratio = 0.0
+texture_normal = ExtResource("3_sugpu")
+texture_pressed = ExtResource("4_bfltn")
+texture_hover = ExtResource("5_hfoea")
+ignore_texture_size = true
+stretch_mode = 3
+
+[node name="HomeButton" type="TextureButton" parent="Control"]
+layout_mode = 0
+offset_left = 744.0
+offset_top = 491.0
+offset_right = 920.0
+offset_bottom = 602.0
+scale = Vector2(0.75, 0.75)
+size_flags_horizontal = 8
+size_flags_stretch_ratio = 0.0
+texture_normal = ExtResource("6_bia76")
+texture_pressed = ExtResource("7_ynmno")
+texture_hover = ExtResource("8_8nrfq")
+ignore_texture_size = true
+stretch_mode = 3
+
+[node name="NextLevelButton" type="TextureButton" parent="Control"]
+layout_mode = 0
+offset_left = 833.0
+offset_top = 359.0
+offset_right = 1041.0
+offset_bottom = 535.0
+scale = Vector2(0.75, 0.75)
+size_flags_horizontal = 8
+size_flags_stretch_ratio = 0.0
+texture_normal = ExtResource("9_r2psp")
+texture_pressed = ExtResource("10_7tkyy")
+texture_hover = ExtResource("11_5bils")
+ignore_texture_size = true
+stretch_mode = 3
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Control"]
+position = Vector2(820, 162)
+scale = Vector2(0.594595, 0.547619)
+sprite_frames = SubResource("SpriteFrames_fscci")
+animation = &"Stars"
+autoplay = "Stars"
+frame_progress = 0.313721
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 634.0
+offset_top = 294.0
+offset_right = 1004.0
+offset_bottom = 367.0
+theme_override_colors/font_color = Color(0.584314, 0.439216, 0.564706, 1)
+theme_override_fonts/font = ExtResource("16_yqd24")
+theme_override_font_sizes/font_size = 60
+text = "Score: 10000"
+horizontal_alignment = 1
+
+[node name="Cat_Animation" type="Node3D" parent="."]
+
+[node name="Plushi_animated_v9" parent="Cat_Animation" instance=ExtResource("16_kxdl6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.14803, 0)
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Cat_Animation"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = 57.0
+offset_right = -628.0
+offset_bottom = -79.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="Cat_Animation/SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="Cat_Animation/SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1.22502)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Cat_Animation/SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.26681)
+
+[connection signal="button_down" from="Control/RestartButton" to="." method="_on_restart_button_button_down"]
+[connection signal="button_up" from="Control/RestartButton" to="." method="_on_restart_button_button_up"]

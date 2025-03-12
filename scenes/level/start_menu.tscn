@@ -1,0 +1,88 @@
+[gd_scene load_steps=16 format=3 uid="uid://duq3d33fa0rfv"]
+
+[ext_resource type="Script" path="res://scenes/level/start_menu.gd" id="1_pvi8y"]
+[ext_resource type="PackedScene" uid="uid://gi7klpm2nkw3" path="res://scenes/Menüs/level_select.tscn" id="2_ae3el"]
+[ext_resource type="PackedScene" uid="uid://dkqe058gu4f5c" path="res://scenes/Menüs/Settings/settings_menu.tscn" id="3_okm1g"]
+[ext_resource type="Texture2D" uid="uid://d1y2sdlnhw7p" path="res://menü_asset/Background/Main_Menu_with_room_for_button.png" id="4_xoxso"]
+[ext_resource type="Texture2D" uid="uid://cnimq7dt36oft" path="res://menü_asset/Main_menu_assets/Background.png" id="5_ippyq"]
+[ext_resource type="Texture2D" uid="uid://cbn0ne1qrcc6j" path="res://menü_asset/Main_menu_assets/Play_normal.png" id="6_rgj8g"]
+[ext_resource type="Texture2D" uid="uid://dnpvh4rfex0if" path="res://menü_asset/Main_menu_assets/Play_pressed.png" id="7_bp5wl"]
+[ext_resource type="Texture2D" uid="uid://bcacb7tx6uqx4" path="res://menü_asset/Main_menu_assets/Play_hover.png" id="8_af0vd"]
+[ext_resource type="Texture2D" uid="uid://ckk28q5gv6rn5" path="res://menü_asset/Main_menu_assets/Settings_normal.png" id="9_vlxx8"]
+[ext_resource type="Texture2D" uid="uid://bo3sif0x7o264" path="res://menü_asset/Main_menu_assets/Settings_pressed.png" id="10_eyfgv"]
+[ext_resource type="Texture2D" uid="uid://da0u4x4gdqhou" path="res://menü_asset/Main_menu_assets/Settings_hover.png" id="11_iao6h"]
+[ext_resource type="Texture2D" uid="uid://bsqsp4fon16uf" path="res://menü_asset/Main_menu_assets/Exit_normal.png" id="12_8xh0v"]
+[ext_resource type="Texture2D" uid="uid://dfolbtssxlklf" path="res://menü_asset/Main_menu_assets/Exit_pressed.png" id="13_ea3fm"]
+[ext_resource type="Texture2D" uid="uid://dekvi40rq5o30" path="res://menü_asset/Main_menu_assets/Exit_hover.png" id="14_07tu0"]
+[ext_resource type="AudioStream" uid="uid://cb4ik50g8u1nv" path="res://menü_asset/menu_sounds/ButtonHover01.wav" id="16_wutj1"]
+
+[node name="Start_menu" type="CanvasLayer"]
+script = ExtResource("1_pvi8y")
+level_select = ExtResource("2_ae3el")
+settings = ExtResource("3_okm1g")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(960, 538)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_xoxso")
+
+[node name="Frame" type="Sprite2D" parent="."]
+position = Vector2(961, 539)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("5_ippyq")
+
+[node name="Buttons" type="Node2D" parent="."]
+
+[node name="Level_select" type="TextureButton" parent="Buttons"]
+offset_left = 760.0
+offset_top = 510.0
+offset_right = 1220.0
+offset_bottom = 660.0
+scale = Vector2(0.8, 0.8)
+focus_neighbor_top = NodePath("../Exit")
+focus_neighbor_bottom = NodePath("../Settings")
+texture_normal = ExtResource("6_rgj8g")
+texture_pressed = ExtResource("7_bp5wl")
+texture_hover = ExtResource("8_af0vd")
+texture_focused = ExtResource("8_af0vd")
+ignore_texture_size = true
+stretch_mode = 3
+
+[node name="Settings" type="TextureButton" parent="Buttons"]
+offset_left = 760.0
+offset_top = 640.0
+offset_right = 1220.0
+offset_bottom = 790.0
+scale = Vector2(0.8, 0.8)
+focus_neighbor_top = NodePath("../Level_select")
+focus_neighbor_bottom = NodePath("../Exit")
+texture_normal = ExtResource("9_vlxx8")
+texture_pressed = ExtResource("10_eyfgv")
+texture_hover = ExtResource("11_iao6h")
+texture_focused = ExtResource("11_iao6h")
+ignore_texture_size = true
+stretch_mode = 3
+
+[node name="Exit" type="TextureButton" parent="Buttons"]
+offset_left = 760.0
+offset_top = 770.0
+offset_right = 1220.0
+offset_bottom = 920.0
+scale = Vector2(0.8, 0.8)
+focus_neighbor_top = NodePath("../Settings")
+focus_neighbor_bottom = NodePath("../Level_select")
+texture_normal = ExtResource("12_8xh0v")
+texture_pressed = ExtResource("13_ea3fm")
+texture_hover = ExtResource("14_07tu0")
+texture_focused = ExtResource("14_07tu0")
+ignore_texture_size = true
+stretch_mode = 3
+
+[node name="Button_hover" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_wutj1")
+volume_db = -8.0
+bus = &"SFX"
+
+[connection signal="pressed" from="Buttons/Level_select" to="." method="_on_level_select_pressed"]
+[connection signal="pressed" from="Buttons/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Buttons/Exit" to="." method="_on_exit_pressed"]

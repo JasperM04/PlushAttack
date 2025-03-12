@@ -1,0 +1,115 @@
+[gd_scene load_steps=17 format=3 uid="uid://dbfktah3ru4ry"]
+
+[ext_resource type="Script" path="res://scenes/Menüs/Pause/pause_menu.gd" id="1_j305h"]
+[ext_resource type="Texture2D" uid="uid://0jmtqaoypeg1" path="res://menü_asset/Pause Menu/pause-screen.png/Black-background-or-black-texture-Graphics-12048423-1-1-580x387.jpg" id="1_jj4wf"]
+[ext_resource type="Texture2D" uid="uid://dibfhfpy0588" path="res://menü_asset/Pause Menu/pause-screen.png/background.png" id="2_spjlx"]
+[ext_resource type="Texture2D" uid="uid://bt4hobyltywns" path="res://menü_asset/Pause Menu/pause-screen.png/fixed_buttons/continue_normal_fix.png" id="4_gerpc"]
+[ext_resource type="Texture2D" uid="uid://cecyncbk777vn" path="res://menü_asset/Pause Menu/pause-screen.png/fixed_buttons/continue_pressed_fix.png" id="5_e6kj2"]
+[ext_resource type="Texture2D" uid="uid://iqkk68670qgq" path="res://menü_asset/Pause Menu/pause-screen.png/fixed_buttons/continue_hover_fix.png" id="6_5p30p"]
+[ext_resource type="Texture2D" uid="uid://d11x5ndxpilv5" path="res://menü_asset/Pause Menu/pause-screen.png/fixed_buttons/replay_normal_fix.png" id="7_42p67"]
+[ext_resource type="Texture2D" uid="uid://dle2cqmboa8sv" path="res://menü_asset/Pause Menu/pause-screen.png/fixed_buttons/replay_pressed_fix.png" id="8_wmoms"]
+[ext_resource type="Texture2D" uid="uid://cyb4tp2dl8i8m" path="res://menü_asset/Pause Menu/pause-screen.png/fixed_buttons/replay_hoverl_fix.png" id="9_ctw1k"]
+[ext_resource type="Texture2D" uid="uid://bai43h71lvfnd" path="res://menü_asset/Pause Menu/pause-screen.png/fixed_buttons/question_normal_fix.png" id="10_sl48r"]
+[ext_resource type="Texture2D" uid="uid://bwqjni1e5riso" path="res://menü_asset/Pause Menu/pause-screen.png/fixed_buttons/question_pressed_fix.png" id="11_e7yar"]
+[ext_resource type="Texture2D" uid="uid://0fape5h0gtkv" path="res://menü_asset/Pause Menu/pause-screen.png/fixed_buttons/question_hover_fix.png" id="12_0r1pv"]
+[ext_resource type="Texture2D" uid="uid://dkls1qdv3ip6u" path="res://menü_asset/Pause Menu/pause-screen.png/fixed_buttons/home_normal_fix.png" id="13_aa7vg"]
+[ext_resource type="Texture2D" uid="uid://dw7iw6kwtnxpb" path="res://menü_asset/Pause Menu/pause-screen.png/fixed_buttons/home_pressedl_fix.png" id="14_q8k4e"]
+[ext_resource type="Texture2D" uid="uid://ofagtobdxsua" path="res://menü_asset/Pause Menu/pause-screen.png/fixed_buttons/home_hoverl_fix.png" id="15_i4p4u"]
+[ext_resource type="AudioStream" uid="uid://cb4ik50g8u1nv" path="res://menü_asset/menu_sounds/ButtonHover01.wav" id="16_3gaor"]
+
+[node name="Pause_menu" type="CanvasLayer"]
+process_mode = 2
+script = ExtResource("1_j305h")
+
+[node name="Background" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.231373)
+position = Vector2(961.5, 549.25)
+scale = Vector2(3.38793, 2.89793)
+texture = ExtResource("1_jj4wf")
+
+[node name="Frame" type="Sprite2D" parent="."]
+position = Vector2(956, 531)
+scale = Vector2(1.1, 1.1)
+texture = ExtResource("2_spjlx")
+
+[node name="Buttons" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 956.0
+offset_top = 531.0
+offset_right = 996.0
+offset_bottom = 571.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Continue" type="TextureButton" parent="Buttons"]
+layout_mode = 0
+offset_left = -206.0
+offset_top = -230.0
+offset_right = 222.0
+offset_bottom = -142.0
+focus_neighbor_top = NodePath("../Exit")
+focus_neighbor_bottom = NodePath("../Restart")
+texture_normal = ExtResource("4_gerpc")
+texture_pressed = ExtResource("5_e6kj2")
+texture_hover = ExtResource("6_5p30p")
+texture_focused = ExtResource("6_5p30p")
+ignore_texture_size = true
+stretch_mode = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="Restart" type="TextureButton" parent="Buttons"]
+layout_mode = 0
+offset_left = -206.0
+offset_top = -111.0
+offset_right = 220.0
+offset_bottom = -27.0
+focus_neighbor_top = NodePath("../Continue")
+focus_neighbor_bottom = NodePath("../Help")
+texture_normal = ExtResource("7_42p67")
+texture_pressed = ExtResource("8_wmoms")
+texture_hover = ExtResource("9_ctw1k")
+texture_focused = ExtResource("9_ctw1k")
+ignore_texture_size = true
+stretch_mode = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="Help" type="TextureButton" parent="Buttons"]
+layout_mode = 0
+offset_left = -206.0
+offset_top = 9.0
+offset_right = 220.0
+offset_bottom = 93.0
+focus_neighbor_top = NodePath("../Restart")
+focus_neighbor_bottom = NodePath("../Exit")
+texture_normal = ExtResource("10_sl48r")
+texture_pressed = ExtResource("11_e7yar")
+texture_hover = ExtResource("12_0r1pv")
+texture_focused = ExtResource("12_0r1pv")
+ignore_texture_size = true
+stretch_mode = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="Exit" type="TextureButton" parent="Buttons"]
+layout_mode = 0
+offset_left = -206.0
+offset_top = 129.0
+offset_right = 220.0
+offset_bottom = 213.0
+focus_neighbor_top = NodePath("../Help")
+focus_neighbor_bottom = NodePath("../Continue")
+texture_normal = ExtResource("13_aa7vg")
+texture_pressed = ExtResource("14_q8k4e")
+texture_hover = ExtResource("15_i4p4u")
+texture_focused = ExtResource("15_i4p4u")
+ignore_texture_size = true
+stretch_mode = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="Button_hover" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_3gaor")
+bus = &"SFX"
+
+[connection signal="pressed" from="Buttons/Continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="Buttons/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="Buttons/Help" to="." method="_on_help_pressed"]
+[connection signal="pressed" from="Buttons/Exit" to="." method="_on_exit_pressed"]

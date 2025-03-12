@@ -1,0 +1,115 @@
+[gd_scene load_steps=27 format=3 uid="uid://cv71i2gm4838k"]
+
+[ext_resource type="PackedScene" uid="uid://bflpl8lilhgwh" path="res://assets/background/background assets/Kallax_Regal.glb" id="1_2pmog"]
+[ext_resource type="Texture2D" uid="uid://bgsvi5wg2rb75" path="res://assets/background/background assets/Texture/Kallax_Regal/Kallax_Base_color.png" id="2_8k0ev"]
+[ext_resource type="Texture2D" uid="uid://mr3eb24ir24a" path="res://assets/background/background assets/Texture/Kallax_Regal/Kallax_Roughness.png" id="3_whoof"]
+[ext_resource type="Texture2D" uid="uid://cva3mnvu4g0oa" path="res://assets/background/background assets/Texture/Kallax_Regal/Boxen_Base_color.png" id="4_hojj4"]
+[ext_resource type="Texture2D" uid="uid://bstwdwjk4r5hi" path="res://assets/background/background assets/Texture/Kallax_Regal/Boxen_Normal_DirectX.png" id="5_tsqkm"]
+[ext_resource type="Texture2D" uid="uid://557vj88cctqg" path="res://assets/background/background assets/Texture/Kallax_Regal/Bisinsmark_Roughness.png" id="6_6l7s0"]
+[ext_resource type="Texture2D" uid="uid://cu8kjebc3bldp" path="res://assets/background/background assets/Texture/Kallax_Regal/86_Base_color.png" id="7_pkfn0"]
+[ext_resource type="Texture2D" uid="uid://cjdfjrlakanu3" path="res://assets/background/background assets/Texture/Kallax_Regal/Bücher_Base_color.png" id="8_xmufy"]
+[ext_resource type="Texture2D" uid="uid://pxroixa2yrar" path="res://assets/background/background assets/Texture/Kallax_Regal/Ball_Base_color.png" id="10_8b1lp"]
+[ext_resource type="Texture2D" uid="uid://dahg4dfyb8c5o" path="res://assets/background/background assets/Texture/Kallax_Regal/Ball_Normal_DirectX.png" id="11_1n8qc"]
+[ext_resource type="Texture2D" uid="uid://p0ggl6d2lcq7" path="res://assets/background/background assets/Texture/Kallax_Regal/Ball_Roughness.png" id="12_e14g0"]
+[ext_resource type="Texture2D" uid="uid://w3b0q6tp7v2h" path="res://assets/background/background assets/Texture/Kallax_Regal/Bisinsmark_Base_color.png" id="13_0jj64"]
+[ext_resource type="Texture2D" uid="uid://dq8w5mkgder13" path="res://assets/background/background assets/Texture/Kallax_Regal/Bisinsmark_Normal_DirectX.png" id="14_uw05h"]
+[ext_resource type="Texture2D" uid="uid://h7lksr7mrk3l" path="res://assets/background/background assets/Texture/Kallax_Regal/lightsaber_Base_color.png" id="14_yw0c8"]
+[ext_resource type="Texture2D" uid="uid://c5em4eu8pqnte" path="res://assets/background/background assets/Texture/Kallax_Regal/lightsaber_Metallic.png" id="15_wa7jh"]
+[ext_resource type="Texture2D" uid="uid://b1wsw5rnre2fm" path="res://assets/background/background assets/Texture/Kallax_Regal/lightsaber_Normal_DirectX.png" id="16_p3f0g"]
+[ext_resource type="Texture2D" uid="uid://ym5hkisdyn7" path="res://assets/background/background assets/Texture/Kallax_Regal/lightsaber_Roughness.png" id="17_c7bev"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uor87"]
+diffuse_mode = 3
+specular_mode = 2
+albedo_texture = ExtResource("2_8k0ev")
+roughness = 0.0
+roughness_texture = ExtResource("3_whoof")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g52pb"]
+diffuse_mode = 3
+specular_mode = 2
+albedo_color = Color(0.52549, 0.52549, 0.52549, 1)
+albedo_texture = ExtResource("4_hojj4")
+roughness_texture = ExtResource("6_6l7s0")
+normal_enabled = true
+normal_texture = ExtResource("5_tsqkm")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cepyc"]
+albedo_texture = ExtResource("7_pkfn0")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_stn4a"]
+albedo_texture = ExtResource("8_xmufy")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g4ill"]
+albedo_texture = ExtResource("8_xmufy")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l5sue"]
+diffuse_mode = 3
+specular_mode = 2
+albedo_texture = ExtResource("10_8b1lp")
+roughness_texture = ExtResource("12_e14g0")
+normal_enabled = true
+normal_texture = ExtResource("11_1n8qc")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4bq2f"]
+albedo_texture = ExtResource("8_xmufy")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f5phq"]
+diffuse_mode = 3
+specular_mode = 2
+albedo_texture = ExtResource("13_0jj64")
+roughness_texture = ExtResource("6_6l7s0")
+normal_enabled = true
+normal_texture = ExtResource("14_uw05h")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pg0ac"]
+albedo_texture = ExtResource("14_yw0c8")
+metallic = 1.0
+metallic_texture = ExtResource("15_wa7jh")
+roughness_texture = ExtResource("17_c7bev")
+normal_enabled = true
+normal_texture = ExtResource("16_p3f0g")
+
+[node name="Kallax_Regal" instance=ExtResource("1_2pmog")]
+
+[node name="Cube_009" parent="." index="0"]
+material_override = SubResource("StandardMaterial3D_uor87")
+
+[node name="Cube_023" parent="." index="1"]
+material_override = SubResource("StandardMaterial3D_g52pb")
+
+[node name="Cube_025" parent="." index="2"]
+material_override = SubResource("StandardMaterial3D_g52pb")
+
+[node name="Cube_026" parent="." index="3"]
+material_override = SubResource("StandardMaterial3D_g52pb")
+
+[node name="Cube_027" parent="." index="4"]
+material_override = SubResource("StandardMaterial3D_g52pb")
+
+[node name="Cube_028" parent="." index="5"]
+material_override = SubResource("StandardMaterial3D_g52pb")
+
+[node name="Cube_029" parent="." index="6"]
+material_override = SubResource("StandardMaterial3D_g52pb")
+
+[node name="Cube_030" parent="." index="7"]
+material_override = SubResource("StandardMaterial3D_cepyc")
+
+[node name="Cube_033" parent="." index="8"]
+material_override = SubResource("StandardMaterial3D_stn4a")
+
+[node name="Cube_043" parent="." index="9"]
+material_override = SubResource("StandardMaterial3D_g4ill")
+
+[node name="Sphere_005" parent="." index="10"]
+material_override = SubResource("StandardMaterial3D_l5sue")
+
+[node name="Cube_044" parent="." index="11"]
+material_override = SubResource("StandardMaterial3D_4bq2f")
+
+[node name="Cylinder_009" parent="." index="12"]
+material_override = SubResource("StandardMaterial3D_f5phq")
+
+[node name="Cylinder_020" parent="." index="13"]
+material_override = SubResource("StandardMaterial3D_pg0ac")

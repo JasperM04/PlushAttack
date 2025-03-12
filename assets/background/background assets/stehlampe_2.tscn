@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://g7m05vo2smm1"]
+
+[ext_resource type="PackedScene" uid="uid://bqk7e1oonlsht" path="res://assets/background/background assets/Stehlampe.glb" id="1_o1alt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x4x5l"]
+diffuse_mode = 3
+specular_mode = 2
+albedo_color = Color(0.87451, 0.733333, 0.717647, 1)
+
+[node name="Stehlampe2" instance=ExtResource("1_o1alt")]
+
+[node name="Stehlampe" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_x4x5l")

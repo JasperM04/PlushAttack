@@ -1,0 +1,120 @@
+[gd_scene load_steps=8 format=3 uid="uid://cj5f3xtomnyg1"]
+
+[ext_resource type="Script" path="res://scripts/mouse.gd" id="1_rogvk"]
+[ext_resource type="PackedScene" uid="uid://bdl8h2g81o403" path="res://assets/toy_mouse/toy_mouse_animated_v6.tscn" id="2_c83pf"]
+[ext_resource type="PackedScene" uid="uid://ckcb2iu55vvot" path="res://assets/toy_mouse/mouse_wrapped_animated.tscn" id="3_2invd"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_smcy1"]
+radius = 0.4
+height = 1.5
+
+[sub_resource type="Animation" id="Animation_rhlop"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("mouse_wrapped_animated_V2:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("toy_mouse_animated:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_q8460"]
+resource_name = "wrapped"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("mouse_wrapped_animated_V2:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("toy_mouse_animated:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_in66f"]
+_data = {
+"idle": SubResource("Animation_rhlop"),
+"wrapped": SubResource("Animation_q8460")
+}
+
+[node name="mouse" type="CharacterBody3D" groups=["mouse"]]
+collision_layer = 4
+axis_lock_linear_z = true
+script = ExtResource("1_rogvk")
+
+[node name="ledge_checker" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.616659, 0.0185882, 0.00019902)
+target_position = Vector3(0, -1.2, 0)
+
+[node name="wall_checker" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.705067, 0.492837, -0.00705197)
+target_position = Vector3(0.4, 0, 0)
+
+[node name="jump_checker" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.474346, 1.16304, 0.00171101)
+target_position = Vector3(1, 0, 0)
+
+[node name="toy_mouse_animated" parent="." instance=ExtResource("2_c83pf")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.424148, 0)
+
+[node name="mouse_wrapped_animated_V2" parent="." instance=ExtResource("3_2invd")]
+transform = Transform3D(-0.88, 0, -1.32876e-07, 0, 0.88, 0, 1.32876e-07, 0, -0.88, 0, 0.531191, 0)
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0.4, 0)
+visible = false
+shape = SubResource("CapsuleShape3D_smcy1")
+
+[node name="wrapped_timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="chase_timer" type="Timer" parent="."]
+wait_time = 0.7
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_in66f")
+}
+autoplay = "idle"
+
+[node name="player_checker" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00808012, 1.34772, 0.00019902)
+target_position = Vector3(3.5, 0, 0)
+collision_mask = 2
+
+[connection signal="timeout" from="wrapped_timer" to="." method="_on_wrapped_timer_timeout"]
+[connection signal="timeout" from="chase_timer" to="." method="_on_chase_timer_timeout"]

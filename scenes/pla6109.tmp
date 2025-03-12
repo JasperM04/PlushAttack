@@ -1,0 +1,96 @@
+[gd_scene load_steps=8 format=3 uid="uid://fq5dp2qgnmpk"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_m74cc"]
+[ext_resource type="PackedScene" uid="uid://klk4pjjudvig" path="res://assets/player/katze_placeholder_animation_unfinished.glb" id="2_woax0"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_eihsu"]
+radius = 0.334311
+height = 1.8
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_3nq4d"]
+radius = 1.5
+
+[sub_resource type="Animation" id="Animation_gekqx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("detact_mouse/CollisionShape3D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_3qg7d"]
+resource_name = "collect"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("detact_mouse/CollisionShape3D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vt86w"]
+_data = {
+"RESET": SubResource("Animation_gekqx"),
+"collect": SubResource("Animation_3qg7d")
+}
+
+[node name="player" type="CharacterBody3D" groups=["player"]]
+collision_layer = 2
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+script = ExtResource("1_m74cc")
+
+[node name="Plueshi" parent="." instance=ExtResource("2_woax0")]
+transform = Transform3D(1.255, 0, 0, 0, 1.255, 0, 0, 0, 1.255, 0, 1.22531, 0)
+
+[node name="wool_spawn" type="Marker3D" parent="Plueshi"]
+transform = Transform3D(0.999912, 0, 0, 0, 0.999912, 0, 0, 0, 0.999912, 0, -0.252456, 0.864924)
+
+[node name="mouse_position" type="Marker3D" parent="Plueshi"]
+transform = Transform3D(0.999912, 0, 0, 0, 0.999912, 0, 0, 0, 0.999912, 0, -0.714416, -0.212812)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.896296, 0)
+shape = SubResource("CapsuleShape3D_eihsu")
+
+[node name="coyote" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[node name="detact_mouse" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="detact_mouse"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00012207, 0.886871, 0)
+shape = SubResource("SphereShape3D_3nq4d")
+disabled = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_vt86w")
+}
+
+[node name="ceiling_checker" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.79346, 0)
+target_position = Vector3(0, 0.2, 0)
+
+[node name="mouse_collected_container" type="Node3D" parent="."]
+
+[connection signal="timeout" from="coyote" to="." method="_on_coyote_timeout"]
+[connection signal="body_entered" from="detact_mouse" to="." method="_on_detact_mouse_body_entered"]

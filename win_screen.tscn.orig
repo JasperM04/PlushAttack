@@ -1,0 +1,154 @@
+[gd_scene load_steps=19 format=3 uid="uid://cds7wdrmjqxpn"]
+
+[ext_resource type="Script" path="res://win_screen.gd" id="1_bygyx"]
+[ext_resource type="Texture2D" uid="uid://but4ed0eciacl" path="res://assets/win_screen_new/Background.png" id="2_kjov7"]
+[ext_resource type="Texture2D" uid="uid://did4y5d57whab" path="res://assets/win_screen_new/Restart_level.png" id="3_yyfc8"]
+[ext_resource type="Texture2D" uid="uid://bs7pnwf3oti1m" path="res://assets/win_screen_new/Restart_level_pressed.png" id="4_3o0hh"]
+[ext_resource type="Texture2D" uid="uid://din5f1c4r7pic" path="res://assets/win_screen_new/Restart_level_hover.png" id="5_x0t6a"]
+[ext_resource type="Texture2D" uid="uid://c0v7fnq6cpmlu" path="res://assets/win_screen_new/Homescreen.png" id="6_88kou"]
+[ext_resource type="Texture2D" uid="uid://12otnnt5cd1t" path="res://assets/win_screen_new/Homescreen_pressed.png" id="7_wkd6w"]
+[ext_resource type="Texture2D" uid="uid://vitmask5jtsn" path="res://assets/win_screen_new/Homescreen_hover.png" id="8_bm0he"]
+[ext_resource type="Texture2D" uid="uid://buqvklpie1dvf" path="res://assets/win_screen_new/Next_level.png" id="9_2wugv"]
+[ext_resource type="Texture2D" uid="uid://dhyc4al04hmwh" path="res://assets/win_screen_new/Next_Level_pressed.png" id="10_oyoqi"]
+[ext_resource type="Texture2D" uid="uid://5cinafg2ee5v" path="res://assets/win_screen_new/Next_level_hover_v2.png" id="11_sykm2"]
+[ext_resource type="Texture2D" uid="uid://ib41bwphrlah" path="res://assets/win_screen_new/ZeroStars.png" id="12_kvamc"]
+[ext_resource type="Texture2D" uid="uid://dwicgdpevu6bo" path="res://assets/win_screen_new/OneStar.png" id="13_f8j0v"]
+[ext_resource type="Texture2D" uid="uid://bnryfuq0i4poo" path="res://assets/win_screen_new/TwoStars.png" id="14_p7py1"]
+[ext_resource type="Texture2D" uid="uid://do26fgyj7jetj" path="res://assets/win_screen_new/ThreeStars.png" id="15_5a0as"]
+[ext_resource type="FontFile" uid="uid://c0b0pel4je3qu" path="res://assets/win_screen_new/Crunch Chips.otf" id="16_jvuhd"]
+[ext_resource type="PackedScene" uid="uid://b0o81r6hujewa" path="res://player_winscreen_animation.tscn" id="16_kxdl6"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fscci"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_kvamc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_f8j0v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_p7py1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_5a0as")
+}],
+"loop": true,
+"name": &"Stars",
+"speed": 1.0
+}]
+
+[node name="Win screen" type="CanvasLayer"]
+script = ExtResource("1_bygyx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(576, 326)
+scale = Vector2(0.605208, 0.546667)
+texture = ExtResource("2_kjov7")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RestartButton" type="TextureButton" parent="Control"]
+layout_mode = 0
+offset_left = 662.0
+offset_top = 354.0
+offset_right = 863.0
+offset_bottom = 529.0
+scale = Vector2(0.75, 0.75)
+size_flags_horizontal = 8
+size_flags_stretch_ratio = 0.0
+texture_normal = ExtResource("3_yyfc8")
+texture_pressed = ExtResource("4_3o0hh")
+texture_hover = ExtResource("5_x0t6a")
+ignore_texture_size = true
+stretch_mode = 3
+
+[node name="HomeButton" type="TextureButton" parent="Control"]
+layout_mode = 0
+offset_left = 758.0
+offset_top = 487.0
+offset_right = 933.0
+offset_bottom = 588.0
+scale = Vector2(0.75, 0.75)
+size_flags_horizontal = 8
+size_flags_stretch_ratio = 0.0
+texture_normal = ExtResource("6_88kou")
+texture_pressed = ExtResource("7_wkd6w")
+texture_hover = ExtResource("8_bm0he")
+ignore_texture_size = true
+stretch_mode = 3
+
+[node name="NextLevelButton" type="TextureButton" parent="Control"]
+layout_mode = 0
+offset_left = 839.0
+offset_top = 353.0
+offset_right = 1048.0
+offset_bottom = 529.0
+scale = Vector2(0.75, 0.75)
+size_flags_horizontal = 8
+size_flags_stretch_ratio = 0.0
+texture_normal = ExtResource("9_2wugv")
+texture_pressed = ExtResource("10_oyoqi")
+texture_hover = ExtResource("11_sykm2")
+ignore_texture_size = true
+stretch_mode = 3
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Control"]
+position = Vector2(826.5, 150.5)
+scale = Vector2(0.611794, 0.553571)
+sprite_frames = SubResource("SpriteFrames_fscci")
+animation = &"Stars"
+autoplay = "Stars"
+frame_progress = 0.313721
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 580.0
+offset_top = 287.0
+offset_right = 1073.0
+offset_bottom = 355.0
+theme_override_colors/font_color = Color(0.831373, 0.607843, 0.909804, 1)
+theme_override_fonts/font = ExtResource("16_jvuhd")
+theme_override_font_sizes/font_size = 64
+text = "Score: 10000"
+horizontal_alignment = 1
+
+[node name="Cat_Animation" type="Node3D" parent="."]
+visible = false
+
+[node name="Plushi_animated_v9" parent="Cat_Animation" instance=ExtResource("16_kxdl6")]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Cat_Animation"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = 57.0
+offset_right = -628.0
+offset_bottom = -79.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="SubViewport" type="SubViewport" parent="Cat_Animation/SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 0
+
+[node name="Camera3D" type="Camera3D" parent="Cat_Animation/SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.270968, 2.13881)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Cat_Animation/SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8.76699)
+light_energy = 0.59
+
+[connection signal="pressed" from="Control/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="Control/HomeButton" to="." method="_on_home_button_pressed"]
+[connection signal="pressed" from="Control/NextLevelButton" to="." method="_on_next_level_button_pressed"]

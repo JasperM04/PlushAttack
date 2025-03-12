@@ -1,0 +1,116 @@
+[gd_scene load_steps=18 format=3 uid="uid://dkqe058gu4f5c"]
+
+[ext_resource type="Script" path="res://scenes/Menüs/Settings/settings_menu.gd" id="1_jlojm"]
+[ext_resource type="Texture2D" uid="uid://d1y2sdlnhw7p" path="res://menü_asset/Background/Main_Menu_with_room_for_button.png" id="2_ame7g"]
+[ext_resource type="PackedScene" uid="uid://bg0uiyx0pne35" path="res://scenes/Menüs/Settings/volume_slider.tscn" id="3_1kel6"]
+[ext_resource type="Texture2D" uid="uid://bdo3y23oife20" path="res://menü_asset/Setting_menu_assets/Background.png" id="3_baxmv"]
+[ext_resource type="Texture2D" uid="uid://dboh0frtxu05a" path="res://menü_asset/Setting_menu_assets/SettingThingy.png" id="5_q4nd1"]
+[ext_resource type="Texture2D" uid="uid://b1e1rcyeb5xyw" path="res://menü_asset/Setting_menu_assets/ThingySchmingy.png" id="6_l4bqu"]
+[ext_resource type="Texture2D" uid="uid://cruovgqvpgnv2" path="res://menü_asset/Setting_menu_assets/LineBorder.png" id="7_rwj8x"]
+[ext_resource type="Texture2D" uid="uid://de8hsrsrcl7jh" path="res://menü_asset/Level_select/back_button/Back_normal_fix.png" id="8_d7et3"]
+[ext_resource type="Texture2D" uid="uid://cnikh6frqk8jx" path="res://menü_asset/Level_select/back_button/Back_pressed_fix.png" id="9_vnkke"]
+[ext_resource type="Texture2D" uid="uid://doguq00u0kdnq" path="res://menü_asset/Level_select/back_button/Back_hover_fix.png" id="10_jq50t"]
+[ext_resource type="AudioStream" uid="uid://cb4ik50g8u1nv" path="res://menü_asset/menu_sounds/ButtonHover01.wav" id="12_3b3o7"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_rbn8f"]
+color = Color(0.760784, 0.643137, 0.576471, 1)
+thickness = 42
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_j30a3"]
+color = Color(0.435294, 0.192157, 0.211765, 1)
+thickness = 42
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_km4q3"]
+color = Color(0.435294, 0.192157, 0.211765, 1)
+thickness = 42
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_31xgq"]
+color = Color(0.760784, 0.643137, 0.576471, 1)
+thickness = 42
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_wl56e"]
+color = Color(0.435294, 0.192157, 0.211765, 1)
+thickness = 42
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_lgatx"]
+color = Color(0.435294, 0.192157, 0.211765, 1)
+thickness = 42
+
+[node name="settings_menu" type="CanvasLayer"]
+script = ExtResource("1_jlojm")
+
+[node name="background" type="Sprite2D" parent="."]
+position = Vector2(960, 538)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_ame7g")
+
+[node name="Frame" type="Sprite2D" parent="."]
+position = Vector2(978, 440)
+texture = ExtResource("3_baxmv")
+
+[node name="Buttons" type="Node2D" parent="."]
+
+[node name="back_to_home" type="TextureButton" parent="Buttons"]
+offset_left = 861.0
+offset_top = 869.0
+offset_right = 1220.0
+offset_bottom = 1127.0
+scale = Vector2(0.643433, 0.696218)
+focus_neighbor_top = NodePath("../../Slider/volume_slider")
+focus_neighbor_bottom = NodePath("../../Slider/volume_slider_music")
+texture_normal = ExtResource("8_d7et3")
+texture_pressed = ExtResource("9_vnkke")
+texture_hover = ExtResource("10_jq50t")
+texture_focused = ExtResource("10_jq50t")
+ignore_texture_size = true
+stretch_mode = 3
+
+[node name="Slider" type="Node2D" parent="."]
+
+[node name="volume_slider_music" parent="Slider" instance=ExtResource("3_1kel6")]
+offset_left = 750.0
+offset_top = 362.0
+offset_right = 1408.0
+offset_bottom = 465.0
+focus_neighbor_top = NodePath("../../Buttons/back_to_home")
+focus_neighbor_bottom = NodePath("../volume_slider")
+theme_override_icons/grabber = ExtResource("5_q4nd1")
+theme_override_icons/grabber_highlight = ExtResource("6_l4bqu")
+theme_override_styles/slider = SubResource("StyleBoxLine_rbn8f")
+theme_override_styles/grabber_area = SubResource("StyleBoxLine_j30a3")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_km4q3")
+step = 0.1
+value = 0.5
+bus_name = "Music"
+
+[node name="LineBorder" type="Sprite2D" parent="Slider/volume_slider_music"]
+show_behind_parent = true
+position = Vector2(329, 51)
+texture = ExtResource("7_rwj8x")
+
+[node name="volume_slider" parent="Slider" instance=ExtResource("3_1kel6")]
+offset_left = 759.0
+offset_top = 576.0
+offset_right = 1417.0
+offset_bottom = 679.0
+focus_neighbor_top = NodePath("../volume_slider_music")
+focus_neighbor_bottom = NodePath("../../Buttons/back_to_home")
+theme_override_icons/grabber = ExtResource("5_q4nd1")
+theme_override_icons/grabber_highlight = ExtResource("6_l4bqu")
+theme_override_styles/slider = SubResource("StyleBoxLine_31xgq")
+theme_override_styles/grabber_area = SubResource("StyleBoxLine_wl56e")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_lgatx")
+step = 0.1
+value = 0.5
+bus_name = "SFX"
+
+[node name="LineBorder" type="Sprite2D" parent="Slider/volume_slider"]
+show_behind_parent = true
+position = Vector2(328, 52)
+texture = ExtResource("7_rwj8x")
+
+[node name="Button_hover" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_3b3o7")
+bus = &"SFX"
+
+[connection signal="pressed" from="Buttons/back_to_home" to="." method="_on_back_to_home_pressed"]

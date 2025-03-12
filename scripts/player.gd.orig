@@ -1,0 +1,107 @@
+extends CharacterBody3D
+signal update_basket
+signal on_picked_up_mouse
+const speed = 8
+const jump_power = 12
+var wool = preload("res://scenes/wool.tscn")
+var jump_gravity = 20
+var fall_gravity = 50
+var gravity = jump_gravity
+var wool_cooldown = 0.3
+var can_jump = false
+var jump_buffer = 0.0
+var collect_cooldown = 0.0
+var current_speed = speed
+var picked_up_mouse = 0
+func _physics_process(delta):
+	
+	if jump_buffer > 0:
+		jump_buffer -= delta
+	else:
+		jump_buffer = 0
+	check_shoot()
+	check_collect() 
+	if wool_cooldown > 0:
+		wool_cooldown -= delta
+	else:
+		wool_cooldown = 0
+	if collect_cooldown > 0:
+		collect_cooldown -= delta
+	else:
+		collect_cooldown = 0
+	if is_on_floor() && can_jump == false:
+		can_jump = true
+	elif can_jump == true && $coyote.is_stopped():
+		$coyote.start()
+	if jump_buffer > 0 && can_jump == true:
+		velocity.y = jump_power
+		can_jump = false
+		jump_buffer = 0.0
+	
+	velocity.y -= get_gravity() * delta
+	if Input.is_action_just_pressed("jump") && can_jump == true:
+		jump_buffer = 0.3
+		
+	var input_dir = Input.get_vector("move_left", "move_right", "ui_up", "ui_down")
+	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	if direction:
+		velocity.x = direction.x * current_speed
+		$Plueshi/AnimationPlayer.play("walk")
+	else:
+		velocity.x = move_toward(velocity.x, 0, current_speed)
+		$Plueshi/AnimationPlayer.play("idle")
+	if direction.x > 0:
+		$Plueshi.global_rotation_degrees.y = 90
+	elif direction.x < 0:
+		$Plueshi.global_rotation_degrees.y = -90
+	$Plueshi.scale = Vector3(1.255,1.255,1.255)
+	move_and_slide()
+
+func check_shoot():
+	if Input.is_action_just_pressed("shoot") && wool_cooldown <= 0:
+		shoot()
+		wool_cooldown = 0.3
+		
+func shoot():
+	var w = wool.instantiate()
+	w.global_position = $Plueshi/wool_spawn.global_position
+	var shoot_direction = $Plueshi/wool_spawn.global_transform.basis.z.normalized()
+	var x = shoot_direction * 15
+	w.direction = shoot_direction.x
+	w.apply_central_impulse(x)
+	get_tree().root.add_child(w)
+	
+func check_collect():
+	if Input.is_action_just_pressed("interact") && collect_cooldown <= 0:
+		collect_mouse()
+		collect_cooldown = 0.5
+
+func _on_coyote_timeout():
+	can_jump = false
+
+func collect_mouse():
+	$AnimationPlayer.play("collect")
+
+
+func _on_detact_mouse_body_entered(body):
+	if body.is_in_group("mouse") && body.wrapped == true && picked_up_mouse < 3 && body.collected == false:
+		current_speed -= 0.75
+		picked_up_mouse += 1
+		on_picked_up_mouse.emit(picked_up_mouse)
+		body.queue_free()
+			
+func submit_mouse():
+	if picked_up_mouse < 1: return
+	update_basket.emit(picked_up_mouse)
+	picked_up_mouse = 0
+	current_speed = speed
+func is_below_ceiling():
+	return $ceiling_checker.is_colliding()
+	
+func get_gravity():
+	if velocity.y < 0:
+		return fall_gravity
+	if is_below_ceiling():
+		return fall_gravity
+	return jump_gravity if Input.is_action_pressed("jump") else fall_gravity
+	

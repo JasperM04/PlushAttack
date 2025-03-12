@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://dq85kjvkdyfh5"]
+
+[ext_resource type="PackedScene" uid="uid://cpvq4v4agw2rm" path="res://assets/background/background assets/Klo.glb" id="1_alwpu"]
+[ext_resource type="Texture2D" uid="uid://bhffppga7uia6" path="res://assets/background/background assets/Texture/Klo/DefaultMaterial_Base_color.png" id="2_bn47r"]
+[ext_resource type="Texture2D" uid="uid://cksflqn5r1yfv" path="res://assets/background/background assets/Texture/Klo/DefaultMaterial_Roughness.png" id="3_f5ql7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i48l8"]
+diffuse_mode = 3
+specular_mode = 2
+albedo_texture = ExtResource("2_bn47r")
+roughness = 0.0
+roughness_texture = ExtResource("3_f5ql7")
+normal_scale = 3.21
+normal_texture = ExtResource("3_f5ql7")
+
+[node name="Klo2" instance=ExtResource("1_alwpu")]
+
+[node name="Klo" parent="." index="0"]
+material_override = SubResource("StandardMaterial3D_i48l8")

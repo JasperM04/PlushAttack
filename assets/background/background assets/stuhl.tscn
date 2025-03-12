@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://c8pfgirpvxpgu"]
+
+[ext_resource type="PackedScene" uid="uid://bhei600iilaww" path="res://assets/background/background assets/Stuhl_2.glb" id="1_ie35v"]
+[ext_resource type="Texture2D" uid="uid://fhjnfweikg8t" path="res://assets/background/background assets/Texture/Stuhl/DefaultMaterial_Base_color.png" id="2_50vju"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vfpmd"]
+diffuse_mode = 3
+specular_mode = 2
+albedo_texture = ExtResource("2_50vju")
+roughness = 0.0
+
+[node name="Stuhl_2" instance=ExtResource("1_ie35v")]
+
+[node name="stuhl_2" parent="." index="0"]
+material_override = SubResource("StandardMaterial3D_vfpmd")

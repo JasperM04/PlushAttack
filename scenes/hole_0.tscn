@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://b1e5cy10nxghu"]
+
+[ext_resource type="PackedScene" uid="uid://bckj5ais3eln5" path="res://scenes/Hole/Mauseloch.tscn" id="1_6rkgs"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5ot6c"]
+size = Vector3(0.001, 0.691, 0.583)
+
+[node name="hole0" type="Area3D"]
+collision_layer = 0
+collision_mask = 4
+
+[node name="Mauseloch" parent="." instance=ExtResource("1_6rkgs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -0.6)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.360962, 0.297363)
+shape = SubResource("BoxShape3D_5ot6c")

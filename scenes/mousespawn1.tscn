@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://uny7dg4f5gca"]
+
+[node name="mousespawn" type="Marker3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, -1, 0)

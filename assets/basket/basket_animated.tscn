@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dn0d3ts8u2toq"]
+
+[ext_resource type="PackedScene" uid="uid://bgwdppnfg2ntx" path="res://assets/basket/basket_animated.glb" id="1_8fiva"]
+
+[node name="basket_animated" instance=ExtResource("1_8fiva")]
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/1/position = Vector3(0, -0.0200146, -0.703917)
+bones/2/position = Vector3(1.53324, 2.00502, -0.385162)
+bones/3/position = Vector3(-1.03176, 1.75795, -0.00591523)

@@ -1,0 +1,18 @@
+[gd_scene load_steps=6 format=3 uid="uid://b8qnupv06s8xx"]
+
+[ext_resource type="PackedScene" uid="uid://330dc37pmb8" path="res://assets/background/background assets/Waschbecken.glb" id="1_3dtn7"]
+[ext_resource type="Texture2D" uid="uid://f3bgv7mbahon" path="res://assets/background/background assets/Texture/Waschbecken/Washbecken _Base_color.png" id="2_3oy3o"]
+[ext_resource type="Texture2D" uid="uid://c36po7skbyvmh" path="res://assets/background/background assets/Texture/Waschbecken/Washbecken _Normal_DirectX.png" id="3_626gm"]
+[ext_resource type="Texture2D" uid="uid://5u2a8b7vk60l" path="res://assets/background/background assets/Texture/Waschbecken/Washbecken _Roughness.png" id="4_7p7cr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6iu6m"]
+albedo_texture = ExtResource("2_3oy3o")
+roughness = 0.0
+roughness_texture = ExtResource("4_7p7cr")
+normal_enabled = true
+normal_texture = ExtResource("3_626gm")
+
+[node name="Waschbecken" instance=ExtResource("1_3dtn7")]
+
+[node name="Cube_011" parent="." index="0"]
+material_override = SubResource("StandardMaterial3D_6iu6m")

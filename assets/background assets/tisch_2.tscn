@@ -1,0 +1,19 @@
+[gd_scene load_steps=6 format=3 uid="uid://du0k3wa6hsldx"]
+
+[ext_resource type="PackedScene" uid="uid://nim0g8tsxyr6" path="res://assets/background/background assets/Tisch.glb" id="1_6t3sw"]
+[ext_resource type="Texture2D" uid="uid://cqt4xiw6b5hk6" path="res://assets/background/background assets/Texture/Tisch/Tisch_Base_color.png" id="2_44gy8"]
+[ext_resource type="Texture2D" uid="uid://dwmo2e0jlthyw" path="res://assets/background/background assets/Texture/Tisch/Tisch_Normal.png" id="3_ngj43"]
+[ext_resource type="Texture2D" uid="uid://bxe0xug17ua7g" path="res://assets/background/background assets/Texture/Tisch/Tisch_Roughness.png" id="4_qcxhh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1je4r"]
+diffuse_mode = 3
+specular_mode = 2
+albedo_texture = ExtResource("2_44gy8")
+roughness_texture = ExtResource("4_qcxhh")
+normal_enabled = true
+normal_texture = ExtResource("3_ngj43")
+
+[node name="Tisch2" instance=ExtResource("1_6t3sw")]
+
+[node name="Tisch" parent="." index="0"]
+material_override = SubResource("StandardMaterial3D_1je4r")

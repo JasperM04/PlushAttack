@@ -1,0 +1,22 @@
+[gd_scene load_steps=7 format=3 uid="uid://2hxhfm6c5m6"]
+
+[ext_resource type="PackedScene" uid="uid://b71t1qlg32v5l" path="res://scenes/level/86.glb" id="1_u3who"]
+[ext_resource type="Texture2D" path="res://assets/background/background assets/Texture/86/86_karosse_BaseColor.png" id="2_8iw3q"]
+[ext_resource type="Texture2D" path="res://assets/background/background assets/Texture/86/86_karosse_Emissive.png" id="3_t1byn"]
+[ext_resource type="Texture2D" path="res://assets/background/background assets/Texture/86/86_Räder_BaseColor.png" id="4_kykrc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hgqeg"]
+albedo_texture = ExtResource("2_8iw3q")
+emission_enabled = true
+emission_texture = ExtResource("3_t1byn")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_riok7"]
+albedo_texture = ExtResource("4_kykrc")
+
+[node name="86" instance=ExtResource("1_u3who")]
+
+[node name="Cube_030" parent="." index="0"]
+material_override = SubResource("StandardMaterial3D_hgqeg")
+
+[node name="Cylinder_002" parent="." index="1"]
+material_override = SubResource("StandardMaterial3D_riok7")

@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmsaawj7aelvv"]
+
+[sub_resource type="GDScript" id="GDScript_k6br6"]
+
+[node name="Camera3D" type="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 0.983255, 0.182236, 0, -0.182236, 0.983255, 0, 5.79873, 26.0143)
+fov = 90.0
+size = 20.0
+script = SubResource("GDScript_k6br6")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 11.4697)
+shadow_enabled = true

@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://cj5f3xtomnyg1"]
+
+[ext_resource type="Script" path="res://scripts/mouse.gd" id="1_rogvk"]
+[ext_resource type="PackedScene" uid="uid://dox1bfyra14cl" path="res://assets/Maus.glb" id="2_rij4h"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_smcy1"]
+height = 1.5
+
+[node name="mouse" type="CharacterBody3D" groups=["enemy"]]
+collision_layer = 4
+collision_mask = 3
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+script = ExtResource("1_rogvk")
+
+[node name="Maus" parent="." instance=ExtResource("2_rij4h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.054891, 0.349521)
+
+[node name="ledge_checker" type="RayCast3D" parent="Maus"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.432513, -0.0363028, -0.349322)
+target_position = Vector3(0, -1.1, 0)
+
+[node name="wall_checker" type="RayCast3D" parent="Maus"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.705067, 0.437946, -0.356573)
+target_position = Vector3(0.2, 0, 0)
+
+[node name="jump_checker" type="RayCast3D" parent="Maus"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.474346, 1.10815, -0.34781)
+target_position = Vector3(0.5, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0.50468, 0)
+shape = SubResource("CapsuleShape3D_smcy1")
+
+[node name="wrapped_timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="timeout" from="wrapped_timer" to="." method="_on_wrapped_timer_timeout"]

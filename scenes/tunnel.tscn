@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://bc4tq5ghtl57t"]
+
+[sub_resource type="GDScript" id="GDScript_pu6kn"]
+resource_name = "tunnel"
+script/source = "extends Node3D
+
+func _ready():
+	for child in get_children():
+		child.body_entered.connect(_on_tunnel_entered.bind(child))
+		
+func get_exit(entrance):
+	var child = get_children()
+	child.erase(entrance)
+	return child.pick_random() 
+	
+func _on_tunnel_entered(body,tunnel):
+	if not body.has_method(\"try_use_tunnel\"): return
+	var exit = get_exit(tunnel)
+	body.try_use_tunnel(tunnel, exit)
+"
+
+[node name="tunnel" type="Node3D"]
+script = SubResource("GDScript_pu6kn")

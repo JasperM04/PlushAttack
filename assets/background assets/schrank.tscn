@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://d4lvxy3vluobf"]
+
+[ext_resource type="PackedScene" uid="uid://buxe8q1lihfoh" path="res://assets/background/background assets/Schrank.glb" id="1_eom4a"]
+[ext_resource type="Texture2D" uid="uid://cglnja037ek47" path="res://assets/background/background assets/Texture/Schrank/DefaultMaterial_Base_color.png" id="2_gduoc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vvh0j"]
+albedo_texture = ExtResource("2_gduoc")
+normal_enabled = true
+
+[node name="Schrank" instance=ExtResource("1_eom4a")]
+
+[node name="Cube_045" parent="." index="0"]
+material_override = SubResource("StandardMaterial3D_vvh0j")

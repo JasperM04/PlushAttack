@@ -1,0 +1,20 @@
+[gd_scene load_steps=6 format=3 uid="uid://bu3xfx5el2hus"]
+
+[ext_resource type="PackedScene" uid="uid://bgaqndtoogw5p" path="res://assets/background/background assets/Stehlampe.glb" id="1_5hgau"]
+[ext_resource type="Texture2D" uid="uid://b01owep2jsidq" path="res://assets/background/background assets/Texture/Stehlampe/DefaultMaterial_Base_color.png" id="2_7w7sc"]
+[ext_resource type="Texture2D" uid="uid://ct1gyltelfpgd" path="res://assets/background/background assets/Texture/Stehlampe/DefaultMaterial_Normal.png" id="3_3wrt0"]
+[ext_resource type="Texture2D" uid="uid://by5duigi11ya3" path="res://assets/background/background assets/Texture/Stehlampe/DefaultMaterial_Roughness.png" id="4_yov6i"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jsk6y"]
+diffuse_mode = 3
+specular_mode = 2
+albedo_texture = ExtResource("2_7w7sc")
+roughness = 0.0
+roughness_texture = ExtResource("4_yov6i")
+normal_enabled = true
+normal_texture = ExtResource("3_3wrt0")
+
+[node name="Stehlampe2" instance=ExtResource("1_5hgau")]
+
+[node name="Stehlampe" parent="." index="0"]
+material_override = SubResource("StandardMaterial3D_jsk6y")

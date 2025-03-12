@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://bjqyx1ncoh8q3"]
+
+[ext_resource type="PackedScene" uid="uid://c6sx0pp7vj4v2" path="res://assets/background/background assets/Tisch.glb" id="1_451wg"]
+[ext_resource type="Texture2D" uid="uid://cqt4xiw6b5hk6" path="res://assets/background/background assets/Texture/Tisch/Tisch_Base_color.png" id="2_s21bu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d5gsg"]
+diffuse_mode = 3
+specular_mode = 2
+albedo_texture = ExtResource("2_s21bu")
+roughness = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t1c61"]
+diffuse_mode = 3
+specular_mode = 2
+albedo_color = Color(0.733333, 0.545098, 0.301961, 1)
+roughness = 0.0
+
+[node name="Tisch2" instance=ExtResource("1_451wg")]
+
+[node name="Tisch" parent="." index="0"]
+material_override = SubResource("StandardMaterial3D_d5gsg")
+surface_material_override/0 = SubResource("StandardMaterial3D_t1c61")

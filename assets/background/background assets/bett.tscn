@@ -1,0 +1,52 @@
+[gd_scene load_steps=11 format=3 uid="uid://ds001kbfjjslo"]
+
+[ext_resource type="PackedScene" uid="uid://cf3uq3oiljhc6" path="res://assets/background/background assets/Bett.glb" id="1_gjk0p"]
+[ext_resource type="Texture2D" uid="uid://8dsxvt3ao7wl" path="res://assets/background/background assets/Texture/Bett/bett bezug_Base_color.png" id="2_2aoek"]
+[ext_resource type="Texture2D" uid="uid://bf05kid3l155a" path="res://assets/background/background assets/Texture/Bett/bett bezug_Normal_DirectX.png" id="3_bkwv2"]
+[ext_resource type="Texture2D" uid="uid://blov3enuh22jm" path="res://assets/background/background assets/Texture/Bett/bett bezug_Roughness.png" id="4_3opi8"]
+[ext_resource type="Texture2D" uid="uid://6hh5sa2unhwi" path="res://assets/background/background assets/Texture/Bett/Bett gestell_Base_color.png" id="5_x0yb3"]
+[ext_resource type="Texture2D" uid="uid://vlyt4r10bfgu" path="res://assets/background/background assets/Texture/Bett/Bett gestell_Normal_DirectX.png" id="6_e4l1n"]
+[ext_resource type="Texture2D" uid="uid://dlcingrg1xp5m" path="res://assets/background/background assets/Texture/Bett/Bett gestell_Roughness.png" id="7_lie2v"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gk2ak"]
+diffuse_mode = 3
+specular_mode = 2
+albedo_color = Color(0.643137, 0.643137, 0.643137, 1)
+albedo_texture = ExtResource("2_2aoek")
+roughness = 0.0
+roughness_texture = ExtResource("4_3opi8")
+normal_enabled = true
+normal_scale = 0.0
+normal_texture = ExtResource("3_bkwv2")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4mwej"]
+diffuse_mode = 3
+specular_mode = 2
+albedo_texture = ExtResource("5_x0yb3")
+roughness = 0.0
+roughness_texture = ExtResource("7_lie2v")
+normal_enabled = true
+normal_scale = 0.0
+normal_texture = ExtResource("6_e4l1n")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tkuy1"]
+diffuse_mode = 3
+specular_mode = 2
+albedo_color = Color(0.643137, 0.643137, 0.643137, 1)
+albedo_texture = ExtResource("2_2aoek")
+roughness = 0.0
+roughness_texture = ExtResource("4_3opi8")
+normal_enabled = true
+normal_scale = 0.0
+normal_texture = ExtResource("3_bkwv2")
+
+[node name="Bett" instance=ExtResource("1_gjk0p")]
+
+[node name="Cube_010" parent="." index="0"]
+material_override = SubResource("StandardMaterial3D_gk2ak")
+
+[node name="Cube_013" parent="." index="1"]
+material_override = SubResource("StandardMaterial3D_4mwej")
+
+[node name="Cube_015" parent="." index="2"]
+material_override = SubResource("StandardMaterial3D_tkuy1")

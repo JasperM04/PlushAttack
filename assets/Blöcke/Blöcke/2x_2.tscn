@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=3 uid="uid://2wog146m7q0j"]
+
+[ext_resource type="Texture2D" uid="uid://bb37edg3u1jr" path="res://assets/Blöcke/Blöcke/Texture/2x2/DefaultMaterial_Base_color.png" id="1_sl10a"]
+[ext_resource type="Texture2D" uid="uid://5vtkjwucd54b" path="res://assets/Blöcke/Blöcke/Texture/2x2/DefaultMaterial_Normal_DirectX.png" id="2_ongg0"]
+[ext_resource type="Texture2D" uid="uid://bqjmql3cmawxv" path="res://assets/Blöcke/Blöcke/Texture/2x2/DefaultMaterial_Roughness.png" id="3_r20hm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_omy0w"]
+albedo_texture = ExtResource("1_sl10a")
+roughness_texture = ExtResource("3_r20hm")
+normal_enabled = true
+normal_texture = ExtResource("2_ongg0")
+
+[node name="2x2"]
+
+[node name="Cube_041" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_omy0w")

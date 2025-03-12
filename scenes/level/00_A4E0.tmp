@@ -1,0 +1,192 @@
+[gd_scene load_steps=22 format=3 uid="uid://dxwabed6m41ol"]
+
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_lu0tb"]
+[ext_resource type="PackedScene" uid="uid://dhno52n3gcs8j" path="res://assets/basket/basket_animated.tscn" id="2_ky01s"]
+[ext_resource type="Script" path="res://scripts/camera.gd" id="3_g8jdq"]
+[ext_resource type="PackedScene" uid="uid://blke4qtelbi00" path="res://scenes/platforms/platform_1x1.tscn" id="3_tdx1m"]
+[ext_resource type="PackedScene" uid="uid://ieu1v8fx70i3" path="res://scenes/platforms/platform_2x_1.tscn" id="4_krhih"]
+[ext_resource type="PackedScene" uid="uid://c0kcyuy1lnsll" path="res://scenes/platforms/platform_2x_2.tscn" id="5_1r2lo"]
+[ext_resource type="PackedScene" uid="uid://kyxh40n1xjhg" path="res://scenes/platforms/platform_3x1.tscn" id="6_ebao5"]
+[ext_resource type="PackedScene" uid="uid://dbg4bi5wi2d2a" path="res://scenes/tunnel.tscn" id="7_4te4b"]
+[ext_resource type="PackedScene" uid="uid://fq5dp2qgnmpk" path="res://scenes/player.tscn" id="7_iegfp"]
+[ext_resource type="PackedScene" uid="uid://c6plb51rwf30y" path="res://assets/timer/control.tscn" id="8_0daf4"]
+[ext_resource type="Texture2D" uid="uid://pf4cfybsm0v1" path="res://assets/background/plüschbackgroundpink.png" id="11_np4qr"]
+[ext_resource type="Texture2D" uid="uid://b1y500g0f4llm" path="res://assets/background/plüschfenster02.png" id="12_0pq2o"]
+[ext_resource type="Texture2D" uid="uid://lfvghednoxa1" path="res://assets/background/plüschfenster01.png" id="13_8bmyp"]
+[ext_resource type="PackedScene" uid="uid://dht1ninrr6cms" path="res://assets/background/Wood_Boden.glb" id="14_nkbrb"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_dqq5c"]
+height = 0.766087
+radius = 0.976625
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_scr8u"]
+size = Vector3(36, 1, 5)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_qil3k"]
+size = Vector2(36, 22)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_onq6w"]
+albedo_texture = ExtResource("11_np4qr")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_w6ysf"]
+size = Vector2(3, 4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0m8gh"]
+albedo_texture = ExtResource("12_0pq2o")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_to701"]
+albedo_texture = ExtResource("13_8bmyp")
+
+[node name="00_level" type="Node3D"]
+script = ExtResource("1_lu0tb")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
+text = "0/5
+"
+
+[node name="Control" parent="CanvasLayer" instance=ExtResource("8_0daf4")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.15, 0.15)
+
+[node name="Labelscore" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -34.5
+offset_right = 34.5
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "SCORE: 0"
+horizontal_alignment = 1
+
+[node name="camera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 20)
+visible = false
+current = true
+fov = 48.0
+size = 20.0
+script = ExtResource("3_g8jdq")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.906308, 0.422618, 0, -0.422618, 0.906308, 0, 2.40629, 19.6247)
+shadow_enabled = true
+
+[node name="playerspawn" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 0)
+
+[node name="player" parent="." instance=ExtResource("7_iegfp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12, 0)
+
+[node name="basket" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, -3, 0)
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="basket"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0757732, 0.45783, 0.235955)
+shape = SubResource("CylinderShape3D_dqq5c")
+
+[node name="basket_animated" parent="basket" instance=ExtResource("2_ky01s")]
+
+[node name="house" type="Node3D" parent="."]
+
+[node name="floor" type="StaticBody3D" parent="house"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8.5, -0.585)
+
+[node name="Wood_Boden" parent="house/floor" instance=ExtResource("14_nkbrb")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="house/floor"]
+shape = SubResource("BoxShape3D_scr8u")
+
+[node name="wallL" type="StaticBody3D" parent="house"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.5, 0, -2)
+
+[node name="Wood_Boden" parent="house/wallL" instance=ExtResource("14_nkbrb")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="house/wallL"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_scr8u")
+
+[node name="wallR" type="StaticBody3D" parent="house"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.5, 0, -2)
+
+[node name="Wood_Boden" parent="house/wallR" instance=ExtResource("14_nkbrb")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="house/wallR"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_scr8u")
+
+[node name="background" type="MeshInstance3D" parent="house"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.6)
+mesh = SubResource("PlaneMesh_qil3k")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_onq6w")
+
+[node name="windows" type="Node3D" parent="house/background"]
+
+[node name="original" type="Node3D" parent="house/background/windows"]
+
+[node name="window1_0" type="MeshInstance3D" parent="house/background/windows/original"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, 6)
+mesh = SubResource("PlaneMesh_w6ysf")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_0m8gh")
+
+[node name="window2_0" type="MeshInstance3D" parent="house/background/windows/original"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 0, 6)
+mesh = SubResource("PlaneMesh_w6ysf")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_to701")
+
+[node name="1" type="Node3D" parent="house/background/windows"]
+
+[node name="2" type="Node3D" parent="house/background/windows"]
+
+[node name="platforms" type="Node3D" parent="."]
+
+[node name="original" type="Node3D" parent="platforms"]
+
+[node name="platform1x1_0" parent="platforms/original" instance=ExtResource("3_tdx1m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.5, 9.5, 0)
+
+[node name="platform2x1_0" parent="platforms/original" instance=ExtResource("4_krhih")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 7.5, 0)
+
+[node name="platform2x2_0" parent="platforms/original" instance=ExtResource("5_1r2lo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 5, 0)
+
+[node name="platform3x1_0" parent="platforms/original" instance=ExtResource("6_ebao5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.5, 2.5, 0)
+
+[node name="1x1" type="Node3D" parent="platforms"]
+
+[node name="2x1" type="Node3D" parent="platforms"]
+
+[node name="2x2" type="Node3D" parent="platforms"]
+
+[node name="3x1" type="Node3D" parent="platforms"]
+
+[node name="mouse_spawn_container" type="Node3D" parent="."]
+
+[node name="mouse_positions" type="Node3D" parent="."]
+
+[node name="tunnel" parent="." instance=ExtResource("7_4te4b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.28772)
+
+[connection signal="body_entered" from="basket" to="." method="_on_basket_body_entered"]

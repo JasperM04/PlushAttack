@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://bu50f7kf6ndpa"]
+
+[ext_resource type="PackedScene" uid="uid://dsk7rxq53w0se" path="res://assets/background/background assets/Kacktusglb.glb" id="1_yiemn"]
+[ext_resource type="Texture2D" uid="uid://clynwe5tpm67u" path="res://assets/background/background assets/Texture/Kacktus/DefaultMaterial_Base_color.png" id="2_8bh70"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nlgts"]
+diffuse_mode = 3
+specular_mode = 2
+albedo_texture = ExtResource("2_8bh70")
+roughness = 0.0
+
+[node name="Kacktusglb" instance=ExtResource("1_yiemn")]
+
+[node name="Cylinder_006" parent="." index="0"]
+material_override = SubResource("StandardMaterial3D_nlgts")

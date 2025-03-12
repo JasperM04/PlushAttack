@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://by12rpdy8n5l6"]
+
+[ext_resource type="Script" path="res://scripts/wool.gd" id="1_nxoaw"]
+[ext_resource type="PackedScene" uid="uid://djf65wvdnklfi" path="res://assets/wool/wool_animated.tscn" id="2_qnere"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_1y6io"]
+radius = 0.4
+
+[node name="wool" type="RigidBody3D"]
+collision_layer = 8
+collision_mask = 5
+axis_lock_linear_z = true
+max_contacts_reported = 1
+contact_monitor = true
+script = ExtResource("1_nxoaw")
+
+[node name="wool_asset" parent="." instance=ExtResource("2_qnere")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_1y6io")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

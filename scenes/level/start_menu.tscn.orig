@@ -1,0 +1,74 @@
+[gd_scene load_steps=14 format=3 uid="uid://duq3d33fa0rfv"]
+
+[ext_resource type="Texture2D" uid="uid://c0iqxf8dg2k3p" path="res://menü_asset/Start_menu_assets/Start_screen_picture.png" id="1_6csij"]
+[ext_resource type="Script" path="res://scenes/level/start_menu.gd" id="1_pvi8y"]
+<<<<<<< working copy
+[ext_resource type="PackedScene" uid="uid://dupsy05idpduk" path="res://scenes/level/01_level.tscn" id="2_7twby"]
+=======
+[ext_resource type="PackedScene" uid="uid://gi7klpm2nkw3" path="res://scenes/Menüs/level_select.tscn" id="2_ae3el"]
+>>>>>>> merge rev
+[ext_resource type="Texture2D" uid="uid://birxnhq1k66si" path="res://menü_asset/NextLevelButton.png" id="2_px3v1"]
+[ext_resource type="PackedScene" uid="uid://dkqe058gu4f5c" path="res://scenes/Menüs/Settings/settings_menu.tscn" id="3_okm1g"]
+[ext_resource type="Texture2D" uid="uid://bbvb3fwkd5lcd" path="res://menü_asset/NextLevelButtonPressed.png" id="3_p5qjh"]
+[ext_resource type="Texture2D" uid="uid://dqk0nfm7j7jse" path="res://menü_asset/NextLevelButtonHover.png" id="4_kna23"]
+[ext_resource type="Texture2D" uid="uid://bwbtcqq4w6ov3" path="res://menü_asset/RestartLevelButton.png" id="6_kwwgr"]
+[ext_resource type="Texture2D" uid="uid://r3lual53pc5v" path="res://menü_asset/HomeButton.png" id="7_b2enq"]
+[ext_resource type="Texture2D" uid="uid://d0tcnjinha2cq" path="res://menü_asset/ReplayLevelPressed.png" id="8_dcoq4"]
+[ext_resource type="Texture2D" uid="uid://dcns0ysqwdm1p" path="res://menü_asset/ReplayLevelHover.png" id="9_aq285"]
+[ext_resource type="Texture2D" uid="uid://dbdipdt1od6gm" path="res://menü_asset/HomeButtonPressed.png" id="11_j3kxg"]
+[ext_resource type="Texture2D" uid="uid://b8va6jdndk43y" path="res://menü_asset/HomeButtonHover.png" id="12_3dgj0"]
+
+[node name="Start_menu" type="CanvasLayer"]
+script = ExtResource("1_pvi8y")
+<<<<<<< working copy
+next_scene = ExtResource("2_7twby")
+=======
+level_select = ExtResource("2_ae3el")
+settings = ExtResource("3_okm1g")
+>>>>>>> merge rev
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(976.479, 548.5)
+scale = Vector2(1.75124, 1.69764)
+texture = ExtResource("1_6csij")
+
+[node name="Level_select" type="TextureButton" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -234.0
+offset_top = -149.0
+offset_right = 91.0
+offset_bottom = 78.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.29296, 0.564551)
+texture_normal = ExtResource("2_px3v1")
+texture_pressed = ExtResource("3_p5qjh")
+texture_hover = ExtResource("4_kna23")
+
+[node name="Settings" type="TextureButton" parent="."]
+offset_left = 728.0
+offset_top = 539.0
+offset_right = 1053.0
+offset_bottom = 766.0
+scale = Vector2(1.30219, 0.633395)
+texture_normal = ExtResource("6_kwwgr")
+texture_pressed = ExtResource("8_dcoq4")
+texture_hover = ExtResource("9_aq285")
+
+[node name="Exit" type="TextureButton" parent="."]
+offset_left = 732.0
+offset_top = 732.0
+offset_right = 983.0
+offset_bottom = 848.0
+scale = Vector2(1.6533, 1.12215)
+texture_normal = ExtResource("7_b2enq")
+texture_pressed = ExtResource("11_j3kxg")
+texture_hover = ExtResource("12_3dgj0")
+
+[connection signal="pressed" from="Level_select" to="." method="_on_level_select_pressed"]
+[connection signal="pressed" from="Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]

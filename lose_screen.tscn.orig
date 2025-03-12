@@ -1,0 +1,124 @@
+[gd_scene load_steps=13 format=3 uid="uid://4y2lvvhfuwxx"]
+
+[ext_resource type="Script" path="res://win_screen.gd" id="1_fs1ve"]
+[ext_resource type="Texture2D" uid="uid://4qkbr6hrekim" path="res://menü_asset/lose_screen_assets/Background.png" id="2_c8bo8"]
+[ext_resource type="Texture2D" uid="uid://b4w2tjhykrpqx" path="res://menü_asset/lose_screen_assets/restart_level.png" id="3_6ebq4"]
+[ext_resource type="Texture2D" uid="uid://dbtw5sdgwx4o8" path="res://menü_asset/lose_screen_assets/restart_level_press.png" id="4_73bcx"]
+[ext_resource type="Texture2D" uid="uid://bs1rcv047bdmt" path="res://menü_asset/lose_screen_assets/restart_level_hover.png" id="5_568hs"]
+[ext_resource type="Texture2D" uid="uid://cenob3y8jf28j" path="res://menü_asset/lose_screen_assets/Home.png" id="6_wxpnw"]
+[ext_resource type="Texture2D" uid="uid://dobvmeaxx1xyu" path="res://menü_asset/lose_screen_assets/Home_pressed.png" id="7_s63k3"]
+[ext_resource type="Texture2D" uid="uid://bcfdc4ck7uwga" path="res://menü_asset/lose_screen_assets/Home_hover.png" id="8_uq82v"]
+[ext_resource type="Texture2D" uid="uid://clq4ektls6qmg" path="res://menü_asset/lose_screen_assets/ZeroStars.png" id="9_ig0ql"]
+[ext_resource type="FontFile" uid="uid://c0b0pel4je3qu" path="res://assets/win_screen_new/Crunch Chips.otf" id="16_ou46v"]
+[ext_resource type="PackedScene" uid="uid://b0o81r6hujewa" path="res://player_winscreen_animation.tscn" id="17_y74h2"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fscci"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_ig0ql")
+}],
+"loop": true,
+"name": &"Stars",
+"speed": 1.0
+}]
+
+[node name="Win screen" type="CanvasLayer"]
+script = ExtResource("1_fs1ve")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(576, 326)
+scale = Vector2(0.605208, 0.546667)
+texture = ExtResource("2_c8bo8")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RestartButton" type="TextureButton" parent="Control"]
+layout_mode = 0
+offset_left = 726.0
+offset_top = 296.0
+offset_right = 927.0
+offset_bottom = 471.0
+scale = Vector2(0.984966, 0.956487)
+size_flags_horizontal = 8
+size_flags_stretch_ratio = 0.0
+texture_normal = ExtResource("3_6ebq4")
+texture_pressed = ExtResource("4_73bcx")
+texture_hover = ExtResource("5_568hs")
+ignore_texture_size = true
+stretch_mode = 3
+
+[node name="HomeButton" type="TextureButton" parent="Control"]
+layout_mode = 0
+offset_left = 751.0
+offset_top = 475.0
+offset_right = 926.0
+offset_bottom = 576.0
+scale = Vector2(0.75, 0.75)
+size_flags_horizontal = 8
+size_flags_stretch_ratio = 0.0
+texture_normal = ExtResource("6_wxpnw")
+texture_pressed = ExtResource("7_s63k3")
+texture_hover = ExtResource("8_uq82v")
+ignore_texture_size = true
+stretch_mode = 3
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Control"]
+position = Vector2(825, 156)
+scale = Vector2(0.604423, 0.57754)
+sprite_frames = SubResource("SpriteFrames_fscci")
+animation = &"Stars"
+autoplay = "Stars"
+frame_progress = 0.313721
+
+[node name="Label" type="Label" parent="Control"]
+visible = false
+layout_mode = 0
+offset_left = 580.0
+offset_top = 287.0
+offset_right = 1073.0
+offset_bottom = 355.0
+theme_override_colors/font_color = Color(0.831373, 0.607843, 0.909804, 1)
+theme_override_fonts/font = ExtResource("16_ou46v")
+theme_override_font_sizes/font_size = 64
+text = "Score: 10000"
+horizontal_alignment = 1
+
+[node name="Cat_Animation" type="Node3D" parent="."]
+visible = false
+
+[node name="Plushi_animated_v9" parent="Cat_Animation" instance=ExtResource("17_y74h2")]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Cat_Animation"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = 57.0
+offset_right = -628.0
+offset_bottom = -79.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="SubViewport" type="SubViewport" parent="Cat_Animation/SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 0
+
+[node name="Camera3D" type="Camera3D" parent="Cat_Animation/SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.270968, 1.225)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Cat_Animation/SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8.635)
+light_energy = 0.59
+
+[connection signal="pressed" from="Control/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="Control/HomeButton" to="." method="_on_home_button_pressed"]

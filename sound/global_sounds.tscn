@@ -1,0 +1,32 @@
+[gd_scene load_steps=7 format=3 uid="uid://bkiy17yc4meq8"]
+
+[ext_resource type="Script" path="res://sound/global_sounds.gd" id="1_5rgry"]
+[ext_resource type="AudioStream" uid="uid://p53sfa423fmf" path="res://sound/music/menu music/home music.mp3" id="2_xjkus"]
+[ext_resource type="AudioStream" uid="uid://bnn82wa7lajd4" path="res://menü_asset/menu_sounds/ButtonPressed1.wav" id="3_emce8"]
+[ext_resource type="AudioStream" uid="uid://d226a1ttsbgro" path="res://sound/vfx/game/mouse/squeek.wav" id="4_r5016"]
+[ext_resource type="AudioStream" uid="uid://bkox13jyhl8rn" path="res://sound/vfx/game/timer/timerring.wav" id="5_cbekw"]
+[ext_resource type="AudioStream" uid="uid://dyitg8aycb7lg" path="res://sound/vfx/ui/endscreen/scoredrums.wav" id="6_bg60a"]
+
+[node name="global_sounds" type="Node"]
+script = ExtResource("1_5rgry")
+
+[node name="home_music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_xjkus")
+volume_db = -14.0
+autoplay = true
+bus = &"Music"
+
+[node name="button_pressed" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_emce8")
+volume_db = -6.0
+bus = &"SFX"
+
+[node name="mouse_squeek" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_r5016")
+
+[node name="timer_ring" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_cbekw")
+
+[node name="win_drums" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_bg60a")
+pitch_scale = 0.8
