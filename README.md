@@ -11,5 +11,6 @@
 - Version control
 
 # Highlights
-- [Player](https://github.com/JasperM04/PlushAttackTest/blob/main/scripts/player.gd)
-- [Mouse](https://github.com/JasperM04/PlushAttackTest/blob/main/scripts/mouse.gd)
+- [Player](https://github.com/JasperM04/PlushAttackTest/blob/main/scripts/player.gd) 2D Movement in a 3D Environment. Coyote-Time, Jumpbuffer and Jumpstrength.
+   
+- [Mouse](https://github.com/JasperM04/PlushAttackTest/blob/main/scripts/mouse.gd) Escaping the Player using the Holesystem.
